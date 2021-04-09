@@ -38,6 +38,8 @@ public class SocketIOClient {
             socket.on(Socket.EVENT_CONNECT, onConnect);
             socket.on("msg", onMessageReceived);
 
+            socket.emit("register client");
+
             if(chatManager != null) {
                 setSender(chatManager);
             }
