@@ -38,8 +38,6 @@ public class SocketIOClient {
             socket.on(Socket.EVENT_CONNECT, onConnect);
             socket.on("msg", onMessageReceived);
 
-            socket.emit("register client");
-
             if(chatManager != null) {
                 setSender(chatManager);
             }
@@ -58,6 +56,11 @@ public class SocketIOClient {
         public void call(Object... args) {
             // your code...
             Log.d("connect", "connected");
+            try {
+                socket.emit("register client");
+            } catch (Exception e) {
+                Log.e("register client", e.getStackTrace().toString());
+            }
         }
     };
 
